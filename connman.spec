@@ -2,7 +2,7 @@
 
 Name: connman
 Summary: Connection Manager
-Group: Applications/System
+Group: Networking/Other
 Version: %{ver}
 License: GPLv2
 URL: http://www.moblin.org
