@@ -32,7 +32,7 @@ within embedded devices running the Linux operating system.
 %package devel
 
 Summary: Development files for Connection Manager
-Group: Development/Libraries
+Group: Development/C
 
 Requires: %{name} >= %{version}
 
