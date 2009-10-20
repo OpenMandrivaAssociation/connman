@@ -6,7 +6,7 @@ Group: Networking/Other
 Version: %{ver}
 License: GPLv2
 URL: http://www.moblin.org
-Release: %mkrel 1
+Release: %mkrel 2
 Source0: http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{ver}.tar.gz
 Source1: mandriva-connman-init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
