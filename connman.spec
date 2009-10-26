@@ -1,4 +1,4 @@
-%define ver 0.42
+%define ver 0.44
 
 Name: connman
 Summary: Connection Manager
@@ -6,7 +6,7 @@ Group: Networking/Other
 Version: %{ver}
 License: GPLv2
 URL: http://www.moblin.org
-Release: %mkrel 2
+Release: %mkrel 1
 Source0: http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{ver}.tar.gz
 Source1: mandriva-connman-init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
