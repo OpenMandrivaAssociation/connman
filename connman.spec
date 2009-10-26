@@ -8,7 +8,6 @@ License: GPLv2
 URL: http://www.moblin.org
 Release: %mkrel 1
 Source0: http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{ver}.tar.gz
-Source1: mandriva-connman-init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: glib2-devel
@@ -64,15 +63,9 @@ autoreconf -fi
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-mkdir -p %{buildroot}/%{_initrddir}
-cp -f %{SOURCE1} %{buildroot}/%{_initrddir}/%{name}
-chmod +x %{buildroot}/%{_initrddir}/%{name}
 
-%post
-%_post_service %{name}
-
-%preun
-%_preun_service %{name}
+install -d %{buildroot}%{_datadir}/dbus-1/system-services/
+install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services/org.moblin.connman.service
 
 %clean
 rm -rf %{buildroot}
@@ -83,8 +76,8 @@ rm -rf %{buildroot}
 %{_sbindir}/*
 %{_libdir}/%{name}/scripts/*
 %{_libdir}/%{name}/plugins/*.so
-%{_initrddir}/%{name}
 %config %{_sysconfdir}/dbus-1/system.d/*.conf
+%{_datadir}/dbus-1/system-services/org.moblin.connman.service
 
 %files devel
 %defattr(-,root,root,-)
