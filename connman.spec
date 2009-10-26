@@ -51,6 +51,7 @@ autoreconf -fi
 		--enable-bluetooth \
 		--enable-loopback \
 		--enable-dnsproxy \
+		--enable-resolvconf \
 		--enable-ppp \
 		--enable-udev \
 		--enable-modemmgr \
