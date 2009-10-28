@@ -1,13 +1,11 @@
-%define ver 0.44
-
 Name: connman
 Summary: Connection Manager
 Group: Networking/Other
-Version: %{ver}
+Version: 0.45
 License: GPLv2
 URL: http://www.moblin.org
 Release: %mkrel 1
-Source0: http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{ver}.tar.gz
+Source0: http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: glib2-devel
