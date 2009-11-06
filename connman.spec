@@ -1,7 +1,7 @@
 Name: connman
 Summary: Connection Manager
 Group: Networking/Other
-Version: 0.45
+Version: 0.46
 License: GPLv2
 URL: http://www.moblin.org
 Release: %mkrel 1
