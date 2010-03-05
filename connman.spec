@@ -1,26 +1,23 @@
-Name: connman
-Summary: Connection Manager
-Group: Networking/Other
-Version: 0.46
-License: GPLv2
-URL: http://www.moblin.org
-Release: %mkrel 1
-Source0: http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-BuildRequires: glib2-devel
-BuildRequires: dbus-devel
-BuildRequires: udev-devel
-BuildRequires: dhcp-client
-BuildRequires: ppp-devel
-BuildRequires: gtk-doc
-
-Requires: dbus
-Requires: dhcp-client >= 3.0.2
-Requires: wpa_supplicant >= 0.5.7
-Requires: bluez
-
-Requires(pre): rpm-helper
+Name:		connman
+Summary:	Connection Manager
+Group:		Networking/Other
+Version:	0.50
+License:	GPLv2
+URL:		http://www.moblin.org
+Release:	%mkrel 1
+Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	glib2-devel
+BuildRequires:	dbus-devel
+BuildRequires:	udev-devel
+BuildRequires:	dhcp-client
+BuildRequires:	ppp-devel
+BuildRequires:	gtk-doc
+Requires:	dbus
+Requires:	dhcp-client >= 3.0.2
+Requires:	wpa_supplicant >= 0.5.7
+Requires:	bluez
+Requires(pre):	rpm-helper
 
 %description
 Connection Manager provides a daemon for managing Internet connections
