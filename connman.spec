@@ -4,7 +4,7 @@ Group:		Networking/Other
 Version:	0.50
 License:	GPLv2
 URL:		http://www.moblin.org
-Release:	%mkrel 1
+Release:	%mkrel 2
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
