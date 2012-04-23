@@ -1,12 +1,11 @@
 Name:		connman
 Summary:	Connection Manager
 Group:		Networking/Other
-Version:	0.50
+Version:	0.80
 License:	GPLv2
 URL:		http://www.moblin.org
 Release:	%mkrel 2
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
 BuildRequires:	dbus-devel
 BuildRequires:	udev-devel
@@ -56,26 +55,19 @@ autoreconf -fi
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 install -d %{buildroot}%{_datadir}/dbus-1/system-services/
 install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services/org.moblin.connman.service
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root,-)
 %doc AUTHORS COPYING INSTALL ChangeLog NEWS README
 %{_sbindir}/*
-%{_libdir}/%{name}/scripts/*
+%dir %{_libdir}/%{name}/scripts/
 %{_libdir}/%{name}/plugins/*.so
 %config %{_sysconfdir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/org.moblin.connman.service
 
 %files devel
-%defattr(-,root,root,-)
 %{_includedir}/*
 %{_libdir}/pkgconfig/*.pc
-%{_libdir}/%{name}/plugins/*.la
