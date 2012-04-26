@@ -12,6 +12,7 @@ BuildRequires:	udev-devel
 BuildRequires:	dhcp-client
 BuildRequires:	ppp-devel
 BuildRequires:	gtk-doc
+BuildRequires:	iptables-devel
 Requires:	dbus
 Requires:	dhcp-client >= 3.0.2
 Requires:	wpa_supplicant >= 0.5.7
