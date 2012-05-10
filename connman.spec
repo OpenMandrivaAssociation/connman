@@ -10,6 +10,7 @@ BuildRequires:	glib2-devel
 BuildRequires:	dbus-devel
 BuildRequires:	udev-devel
 BuildRequires:	dhcp-client
+BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	ppp-devel
 BuildRequires:	gtk-doc
 BuildRequires:	iptables-devel
