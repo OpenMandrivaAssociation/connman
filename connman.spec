@@ -1,10 +1,10 @@
 Name:		connman
 Summary:	Connection Manager
 Group:		Networking/Other
-Version:	0.80
+Version:	1.0
 License:	GPLv2
 URL:		http://www.moblin.org
-Release:	%mkrel 2
+Release:	1
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	glib2-devel
 BuildRequires:	dbus-devel
@@ -13,6 +13,8 @@ BuildRequires:	dhcp-client
 BuildRequires:	ppp-devel
 BuildRequires:	gtk-doc
 BuildRequires:	iptables-devel
+BuildRequires:	openvpn openconnect vpnc
+Requires:	openvpn openconnect vpnc
 Requires:	dbus
 Requires:	dhcp-client >= 3.0.2
 Requires:	wpa_supplicant >= 0.5.7
@@ -38,21 +40,26 @@ connman-devel contains development files for use with connman.
 
 %build
 autoreconf -fi
-%configure	--disable-static \
+./configure	--disable-static \
 		--enable-ethernet \
 		--enable-wifi \
-		--enable-dhclient \
 		--enable-bluetooth \
+		--enable-datafiles \
 		--enable-loopback \
-		--enable-dnsproxy \
-		--enable-resolvconf \
-		--enable-ppp \
-		--enable-udev \
-		--enable-modemmgr \
 		--enable-client \
 		--enable-threads \
-		--enable-gtk-doc
-
+		--enable-gtk-doc \
+		--enable-hh2serial-gps \
+		--enable-openvpn \
+		--enable-openconnect \
+		--enable-vpnc \
+		--enable-l2tp \
+		--enable-iospm \
+		--enable-tist \
+		--enable-nmcompat \
+		--enable-polkit	\
+		--prefix=%{_prefix} \
+		--libdir=%{_libdir}
 %make
 
 %install
@@ -68,6 +75,9 @@ install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services
 %{_libdir}/%{name}/plugins/*.so
 %config %{_sysconfdir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/org.moblin.connman.service
+%{_datadir}/polkit-1/actions/net.%{name}.policy
+%{_libdir}/%{name}/scripts/*.so*
+%{_libdir}/%{name}/scripts/open*-script
 
 %files devel
 %{_includedir}/*
