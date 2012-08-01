@@ -1,7 +1,7 @@
 Name:		connman
 Summary:	Connection Manager
 Group:		Networking/Other
-Version:	1.0
+Version:	1.4
 License:	GPLv2
 URL:		http://www.moblin.org
 Release:	1
@@ -79,6 +79,7 @@ install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services
 %{_datadir}/polkit-1/actions/net.%{name}.policy
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
+%{_unitdir}/connman.service
 
 %files devel
 %{_includedir}/*
