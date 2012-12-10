@@ -1,37 +1,35 @@
 Name:		connman
+Version:	1.9
+Release:	1
 Summary:	Connection Manager
 Group:		Networking/Other
-Version:	1.4
 License:	GPLv2
 URL:		http://www.moblin.org
-Release:	1
-Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.gz
-BuildRequires:	glib2-devel
-BuildRequires:	dbus-devel
-BuildRequires:	udev-devel
+Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.xz
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(udev)
 BuildRequires:	dhcp-client
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	ppp-devel
 BuildRequires:	gtk-doc
 BuildRequires:	iptables-devel
+BuildRequires:	readline-devel
 BuildRequires:	openvpn openconnect vpnc
 Requires:	openvpn openconnect vpnc
 Requires:	dbus
 Requires:	dhcp-client >= 3.0.2
 Requires:	wpa_supplicant >= 0.5.7
 Requires:	bluez
-Requires(pre):	rpm-helper
 
 %description
 Connection Manager provides a daemon for managing Internet connections
 within embedded devices running the Linux operating system.
 
 %package devel
-
-Summary: Development files for Connection Manager
-Group: Development/C
-
-Requires: %{name} >= %{version}
+Summary:	Development files for Connection Manager
+Group:		Development/C
+Requires:	%{name} >= %{version}
 
 %description devel
 connman-devel contains development files for use with connman.
@@ -58,7 +56,7 @@ autoreconf -fi
 		--enable-iospm \
 		--enable-tist \
 		--enable-nmcompat \
-		--enable-polkit	\
+		--enable-polkit \
 		--prefix=%{_prefix} \
 		--libdir=%{_libdir}
 %make
@@ -79,7 +77,6 @@ install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services
 %{_datadir}/polkit-1/actions/net.%{name}.policy
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
-%{_unitdir}/connman.service
 
 %files devel
 %{_includedir}/*
