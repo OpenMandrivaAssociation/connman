@@ -38,6 +38,7 @@ connman-devel contains development files for use with connman.
 %setup -q
 
 %build
+%setup_compile_flags
 autoreconf -fi
 ./configure	--disable-static \
 		--enable-ethernet \
