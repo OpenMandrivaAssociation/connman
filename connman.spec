@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 Summary:	Connection Manager
 Name:		connman
 Version:	1.15
