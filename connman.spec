@@ -1,20 +1,20 @@
-Name:		connman
-Version:	1.9
-Release:	1
 Summary:	Connection Manager
-Group:		Networking/Other
+Name:		connman
+Version:	1.15
+Release:	1
 License:	GPLv2
-URL:		http://www.moblin.org
+Group:		Networking/Other
+Url:		http://www.moblin.org
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.xz
+BuildRequires:	gtk-doc
+BuildRequires:	dhcp-client
+BuildRequires:	iptables-devel
+BuildRequires:	ppp-devel
+BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
-BuildRequires:	dhcp-client
 BuildRequires:	pkgconfig(gnutls)
-BuildRequires:	ppp-devel
-BuildRequires:	gtk-doc
-BuildRequires:	iptables-devel
-BuildRequires:	readline-devel
 BuildRequires:	openvpn openconnect vpnc
 Requires:	openvpn openconnect vpnc
 Requires:	dbus
@@ -29,13 +29,13 @@ within embedded devices running the Linux operating system.
 %package devel
 Summary:	Development files for Connection Manager
 Group:		Development/C
-Requires:	%{name} >= %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 connman-devel contains development files for use with connman.
 
 %prep
-%setup -q -n connman-%{version}
+%setup -q
 
 %build
 autoreconf -fi
@@ -72,11 +72,16 @@ install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services
 %{_sbindir}/*
 %dir %{_libdir}/%{name}/scripts/
 %{_libdir}/%{name}/plugins/*.so
+%{_libdir}/%{name}/plugins-vpn/*.so
 %config %{_sysconfdir}/dbus-1/system.d/*.conf
+%{_datadir}/dbus-1/system-services/net.connman.vpn.service
 %{_datadir}/dbus-1/system-services/org.moblin.connman.service
-%{_datadir}/polkit-1/actions/net.%{name}.policy
+%{_datadir}/polkit-1/actions/net.connman.policy
+%{_datadir}/polkit-1/actions/net.connman.vpn.policy
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
+%{_mandir}/man5/connman.conf.5.*
+%{_mandir}/man8/connman.8.*
 
 %files devel
 %{_includedir}/*
