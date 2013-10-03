@@ -3,7 +3,7 @@
 Summary:	Connection Manager
 Name:		connman
 Version:	1.15
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		Networking/Other
 Url:		http://www.moblin.org
@@ -17,6 +17,7 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(gnutls)
+BuildRequires:  pkgconfig(libsystemd-daemon)
 BuildRequires:	openvpn openconnect vpnc
 Requires:	openvpn openconnect vpnc
 Requires:	dbus
@@ -83,6 +84,8 @@ install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services
 %{_datadir}/polkit-1/actions/net.connman.vpn.policy
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
+%{_unitdir}/%{name}.service
+%{_unitdir}/%{name}-vpn.service
 %{_mandir}/man5/connman.conf.5.*
 %{_mandir}/man8/connman.8.*
 
