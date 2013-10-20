@@ -1,7 +1,9 @@
+%define _disable_ld_no_undefined 1
+
 Summary:	Connection Manager
 Name:		connman
 Version:	1.18
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
@@ -68,7 +70,7 @@ connman-devel contains development files for use with connman.
 
 %build
 autoreconf -fi
-./configure	--disable-static \
+%configure2_5x	--disable-static \
 		--enable-ethernet \
 		--enable-wifi \
 		--enable-bluetooth \
