@@ -1,0 +1,11 @@
+diff -urN connman-1.18/src/connman.service.in connman-1.18-patched/src/connman.service.in
+--- connman-1.18/src/connman.service.in	2013-02-26 23:31:20.000000000 +1100
++++ connman-1.18-patched/src/connman.service.in	2013-10-20 18:13:04.013988742 +1100
+@@ -1,6 +1,7 @@
+ [Unit]
+ Description=Connection service
+ After=syslog.target
++Wants=iptables.service
+ 
+ [Service]
+ Type=dbus
