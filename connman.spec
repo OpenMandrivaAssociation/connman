@@ -2,13 +2,12 @@
 
 Summary:	Connection Manager
 Name:		connman
-Version:	1.18
-Release:	4
+Version:	1.34
+Release:	1
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.xz
-Patch0:		connman-1.18-service.patch
 BuildRequires:	gtk-doc
 BuildRequires:	dhcp-client
 BuildRequires:	iptables-devel
@@ -18,7 +17,7 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(gnutls)
-BuildRequires:	pkgconfig(libsystemd-daemon)
+BuildRequires:	%{_lib}systemd-devel
 BuildRequires:	openvpn openconnect vpnc
 Requires:	openvpn openconnect vpnc
 Requires:	dbus
@@ -33,6 +32,7 @@ within embedded devices running the Linux operating system.
 %files
 %doc AUTHORS COPYING INSTALL ChangeLog NEWS README
 %{_sbindir}/*
+%{_bindir}/connmanctl
 %dir %{_libdir}/%{name}/scripts/
 %{_libdir}/%{name}/plugins/*.so
 %{_libdir}/%{name}/plugins-vpn/*.so
@@ -43,10 +43,18 @@ within embedded devices running the Linux operating system.
 %{_datadir}/polkit-1/actions/net.connman.vpn.policy
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
+/usr/lib/tmpfiles.d/connman_resolvconf.conf
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}-vpn.service
+%{_unitdir}/%{name}-wait-online.service
+%{_mandir}/man1/connmanctl.1.*
 %{_mandir}/man5/connman.conf.5.*
+%{_mandir}/man5/connman-service.config.5.*
+%{_mandir}/man5/connman-vpn.conf.5.*
+%{_mandir}/man5/connman-vpn-provider.config.5.*
 %{_mandir}/man8/connman.8.*
+%{_mandir}/man8/connman-vpn.8.*
+
 
 #----------------------------------------------------------------------------
 
@@ -66,7 +74,6 @@ connman-devel contains development files for use with connman.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 autoreconf -fi
