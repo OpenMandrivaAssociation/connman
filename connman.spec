@@ -2,7 +2,7 @@
 
 Summary:	Connection Manager
 Name:		connman
-Version:	1.34
+Version:	1.37
 Release:	1
 License:	GPLv2+
 Group:		Networking/Other
@@ -77,7 +77,7 @@ connman-devel contains development files for use with connman.
 
 %build
 autoreconf -fi
-%configure2_5x	--disable-static \
+%configure	--disable-static \
 		--enable-ethernet \
 		--enable-wifi \
 		--enable-bluetooth \
@@ -97,10 +97,10 @@ autoreconf -fi
 		--enable-polkit \
 		--prefix=%{_prefix} \
 		--libdir=%{_libdir}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 install -d %{buildroot}%{_datadir}/dbus-1/system-services/
 install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services/org.moblin.connman.service
