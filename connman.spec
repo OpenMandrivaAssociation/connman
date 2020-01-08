@@ -17,7 +17,7 @@ BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(gnutls)
-BuildRequires:	%{_lib}systemd-devel
+BuildRequires:	pkgconfig(systemd)
 BuildRequires:	openvpn openconnect vpnc
 Requires:	openvpn openconnect vpnc
 Requires:	dbus
@@ -36,7 +36,7 @@ within embedded devices running the Linux operating system.
 %dir %{_libdir}/%{name}/scripts/
 %{_libdir}/%{name}/plugins/*.so
 %{_libdir}/%{name}/plugins-vpn/*.so
-#config #{_sysconfdir}/dbus-1/system.d/*.conf
+%config %{_datadir}/dbus-1/system.d/connman*
 %{_datadir}/dbus-1/system-services/net.connman.vpn.service
 %{_datadir}/dbus-1/system-services/org.moblin.connman.service
 %{_datadir}/polkit-1/actions/net.connman.policy
