@@ -36,7 +36,7 @@ within embedded devices running the Linux operating system.
 %dir %{_libdir}/%{name}/scripts/
 %{_libdir}/%{name}/plugins/*.so
 %{_libdir}/%{name}/plugins-vpn/*.so
-%config %{_sysconfdir}/dbus-1/system.d/*.conf
+#config #{_sysconfdir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/net.connman.vpn.service
 %{_datadir}/dbus-1/system-services/org.moblin.connman.service
 %{_datadir}/polkit-1/actions/net.connman.policy
