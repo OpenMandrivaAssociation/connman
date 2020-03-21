@@ -44,6 +44,7 @@ within embedded devices running the Linux operating system.
 %{_datadir}/polkit-1/actions/net.connman.vpn.policy
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
+%{_libdir}/connman/scripts/vpn-script
 /usr/lib/tmpfiles.d/connman_resolvconf.conf
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}-vpn.service
