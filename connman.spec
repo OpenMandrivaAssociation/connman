@@ -3,7 +3,7 @@
 Summary:	Connection Manager
 Name:		connman
 Version:	1.38
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
@@ -18,12 +18,16 @@ BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(systemd)
-BuildRequires:  pkgconfig(libmnl)
-BuildRequires:	openvpn openconnect vpnc
-Requires:	openvpn openconnect vpnc
+BuildRequires:	pkgconfig(libmnl)
+BuildRequires:	openvpn
+BuildRequires:	openconnect
+BuildRequires:	vpnc
+Requires:	openvpn
+BuildRequires:	openconnect
+BuildRequires:	vpnc
 Requires:	dbus
 Requires:	dhcp-client >= 3.0.2
-Requires:	wpa_supplicant >= 0.5.7
+Requires:	iwd
 Requires:	bluez
 
 %description
@@ -97,6 +101,7 @@ autoreconf -fi
 		--enable-tist \
 		--enable-nmcompat \
 		--enable-polkit \
+		--enable-iwd \
 		--prefix=%{_prefix} \
 		--libdir=%{_libdir}
 %make_build
