@@ -19,6 +19,7 @@ BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(systemd)
 BuildRequires:  pkgconfig(libmnl)
+BuildRequires:	pkgconfig(openconnect)
 BuildRequires:	openvpn openconnect vpnc
 Requires:	openvpn openconnect vpnc
 Requires:	dbus
