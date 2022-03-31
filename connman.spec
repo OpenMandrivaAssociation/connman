@@ -3,14 +3,14 @@
 Summary:	Connection Manager
 Name:		connman
 Version:	1.41
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.xz
 BuildRequires:	gtk-doc
 BuildRequires:	dhcp-client
-BuildRequires:	iptables-devel
+BuildRequires:	pkgconfig(xtables)
 BuildRequires:	ppp-devel
 BuildRequires:	readline-devel
 BuildRequires:	pkgconfig(glib-2.0)
@@ -18,13 +18,17 @@ BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(systemd)
-BuildRequires:  pkgconfig(libmnl)
+BuildRequires:	pkgconfig(libmnl)
 BuildRequires:	pkgconfig(openconnect)
-BuildRequires:	openvpn openconnect vpnc
-Requires:	openvpn openconnect vpnc
+BuildRequires:	openvpn
+BuildRequires:	openconnect
+BuildRequires:	vpnc
+Requires:	openvpn
+Requires:	openconnect
+Requires:	vpnc
 Requires:	dbus
 Requires:	dhcp-client >= 3.0.2
-Requires:	wpa_supplicant >= 0.5.7
+Requires:	iwd
 Requires:	bluez
 
 %description
@@ -46,18 +50,17 @@ within embedded devices running the Linux operating system.
 %{_libdir}/%{name}/scripts/*.so*
 %{_libdir}/%{name}/scripts/open*-script
 %{_libdir}/connman/scripts/vpn-script
-/usr/lib/tmpfiles.d/connman_resolvconf.conf
+%{_tmpfilesdir}/connman_resolvconf.conf
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}-vpn.service
 %{_unitdir}/%{name}-wait-online.service
-%{_mandir}/man1/connmanctl.1.*
-%{_mandir}/man5/connman.conf.5.*
-%{_mandir}/man5/connman-service.config.5.*
-%{_mandir}/man5/connman-vpn.conf.5.*
-%{_mandir}/man5/connman-vpn-provider.config.5.*
-%{_mandir}/man8/connman.8.*
-%{_mandir}/man8/connman-vpn.8.*
-
+%doc %{_mandir}/man1/connmanctl.1.*
+%doc %{_mandir}/man5/connman.conf.5.*
+%doc %{_mandir}/man5/connman-service.config.5.*
+%doc %{_mandir}/man5/connman-vpn.conf.5.*
+%doc %{_mandir}/man5/connman-vpn-provider.config.5.*
+%doc %{_mandir}/man8/connman.8.*
+%doc %{_mandir}/man8/connman-vpn.8.*
 
 #----------------------------------------------------------------------------
 
@@ -80,26 +83,27 @@ connman-devel contains development files for use with connman.
 
 %build
 autoreconf -fi
-%configure	--disable-static \
-		--enable-ethernet \
-		--enable-wifi \
-		--enable-bluetooth \
-		--enable-datafiles \
-		--enable-loopback \
-		--enable-client \
-		--enable-threads \
-		--enable-gtk-doc \
-		--enable-hh2serial-gps \
-		--enable-openvpn \
-		--enable-openconnect \
-		--enable-vpnc \
-		--enable-l2tp \
-		--enable-iospm \
-		--enable-tist \
-		--enable-nmcompat \
-		--enable-polkit \
-		--prefix=%{_prefix} \
-		--libdir=%{_libdir}
+%configure \
+	--disable-static \
+	--enable-ethernet \
+	--enable-wifi \
+	--enable-bluetooth \
+	--enable-datafiles \
+	--enable-loopback \
+	--enable-client \
+	--enable-threads \
+	--enable-gtk-doc \
+	--enable-hh2serial-gps \
+	--enable-openvpn \
+	--enable-openconnect \
+	--enable-vpnc \
+	--enable-l2tp \
+	--enable-iospm \
+	--enable-tist \
+	--enable-nmcompat \
+	--enable-polkit \
+	--enable-iwd
+
 %make_build
 
 %install
@@ -107,4 +111,3 @@ autoreconf -fi
 
 install -d %{buildroot}%{_datadir}/dbus-1/system-services/
 install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services/org.moblin.connman.service
-
