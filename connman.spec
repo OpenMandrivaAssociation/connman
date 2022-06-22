@@ -3,7 +3,7 @@
 Summary:	Connection Manager
 Name:		connman
 Version:	1.41
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
@@ -37,8 +37,10 @@ within embedded devices running the Linux operating system.
 
 %files
 %doc AUTHORS COPYING INSTALL ChangeLog NEWS README
-%{_sbindir}/*
-%{_bindir}/connmanctl
+%{_bindir}/*
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/plugins
+%dir %{_libdir}/%{name}/plugins-vpn
 %dir %{_libdir}/%{name}/scripts/
 %{_libdir}/%{name}/plugins/*.so
 %{_libdir}/%{name}/plugins-vpn/*.so
