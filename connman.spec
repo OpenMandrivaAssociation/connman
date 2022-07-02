@@ -12,7 +12,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	dhcp-client
 BuildRequires:	pkgconfig(xtables)
 BuildRequires:	ppp-devel
-BuildRequires:	readline-devel
+BuildRequires:	pkgconfig(readline)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(udev)
@@ -53,6 +53,7 @@ within embedded devices running the Linux operating system.
 %{_libdir}/%{name}/scripts/open*-script
 %{_libdir}/connman/scripts/vpn-script
 %{_tmpfilesdir}/connman_resolvconf.conf
+%{_presetdir}/86-%{name}.preset
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}-vpn.service
 %{_unitdir}/%{name}-wait-online.service
@@ -113,3 +114,18 @@ autoreconf -fi
 
 install -d %{buildroot}%{_datadir}/dbus-1/system-services/
 install -m644 src/connman.service %{buildroot}%{_datadir}/dbus-1/system-services/org.moblin.connman.service
+
+install -d %{buildroot}%{_presetdir}
+cat > %{buildroot}%{_presetdir}/86-%{name}.preset << EOF
+enable %{name}.service
+EOF
+
+
+%post
+%systemd_post %{name}.service
+
+%preun
+%systemd_preun %{name}.service
+
+%postun
+%systemd_postun_with_restart %{name}.service
