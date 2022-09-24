@@ -3,7 +3,7 @@
 Summary:	Connection Manager
 Name:		connman
 Version:	1.41
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
@@ -28,7 +28,8 @@ Requires:	openconnect
 Requires:	vpnc
 Requires:	dbus
 Requires:	dhcp-client >= 3.0.2
-Requires:	iwd
+Requires:	wpa_supplicant
+#Requires:	iwd
 Requires:	bluez
 
 %description
@@ -104,8 +105,8 @@ autoreconf -fi
 	--enable-iospm \
 	--enable-tist \
 	--enable-nmcompat \
-	--enable-polkit \
-	--enable-iwd
+	--enable-polkit
+#--enable-iwd
 
 %make_build
 
