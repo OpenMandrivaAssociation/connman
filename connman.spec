@@ -3,7 +3,7 @@
 Summary:	Connection Manager
 Name:		connman
 Version:	1.41
-Release:	4
+Release:	5
 License:	GPLv2+
 Group:		Networking/Other
 Url:		http://www.moblin.org
