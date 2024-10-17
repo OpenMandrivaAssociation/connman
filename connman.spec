@@ -6,7 +6,7 @@ Version:	1.43
 Release:	1
 License:	GPLv2+
 Group:		Networking/Other
-Url:		http://www.moblin.org
+Url:		https://www.moblin.org
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.xz
 BuildRequires:	gtk-doc
 BuildRequires:	dhcp-client
