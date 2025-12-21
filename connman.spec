@@ -8,6 +8,11 @@ License:	GPLv2+
 Group:		Networking/Other
 Url:		https://www.moblin.org
 Source0:	http://www.kernel.org/pub/linux/network/%{name}/%{name}-%{version}.tar.xz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gtk-doc
 BuildRequires:	dhcp-client
 BuildRequires:	pkgconfig(xtables)
