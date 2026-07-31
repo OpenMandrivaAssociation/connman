@@ -2,7 +2,7 @@
 
 Summary:	Connection Manager
 Name:		connman
-Version:	1.44
+Version:	2.0
 Release:	1
 License:	GPLv2+
 Group:		Networking/Other
